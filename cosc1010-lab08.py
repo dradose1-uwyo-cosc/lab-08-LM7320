@@ -1,8 +1,8 @@
-# Your Name Here
+# Luke Jackson
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section:
+# Submission Date 11/10/24
+# Lab 08
+# Lab Section:14
 # Sources, people worked with, help given to:
 # your
 # comments
@@ -13,9 +13,13 @@
 # If they can't be converted return false
 # Other wise return the converted int or float 
 # Floats should only have one decimal point in them 
-
-
-print("*" * 75)
+def stringConverter(answer):
+    if "." in answer:
+        answer = float(answer)
+    elif "." not in answer:
+        answer = int(answer)
+    return answer
+   
 
 
 # Point-slope y = mx + b
@@ -38,7 +42,44 @@ print("*" * 75)
 # Remember all inputs are strings, but the function needs ints or floats
 # Call your function and print the resulting list
 
-print("*" * 75)
+def slope_intercept(m, b, x1, x2):
+    y_list = []
+    for x in range(x1, x2):
+        y = m*x+b
+        y_list.append(y)
+    return y_list
+while True:
+    answer_m = input("exit to exit \n Give a number: ")
+    answer_b = input("exit to exit \n Give another number: ")
+    answer_al = input("exit to exit \n Give a lower bound number: ")
+    answer_au = input("exit to exit \n Give a upper bound number: ")
+
+    if "exit" in answer_m.lower():
+        break
+    else:
+        M = stringConverter(answer_m)
+
+    if "exit" in answer_b.lower():
+        break
+    else:
+        B = stringConverter(answer_b)
+
+    if "exit" in answer_al.lower():
+        break
+    else:
+        AL = stringConverter(answer_al)
+
+    if "exit" in answer_au.lower():
+        break
+    else:
+        AU = stringConverter(answer_au)
+    
+    yl = slope_intercept(M, B, AL, AU)
+    print(f"Y value list = {yl}")
+    continue
+
+
+    
 
 
 # Write a function to solve the quadratic formula
@@ -48,3 +89,42 @@ print("*" * 75)
 # Create a loop like above to prompt the user for input for the three values
 # Create a second function that just does the square root operation 
     # If the number you are trying to take the square root of is negative, return null
+
+def square(a, b, c):
+    if b < 0 or c < 0:
+        x = ((a**2) - (4*b*c))**0.5
+        return x
+    
+
+
+def quadratic(a, b, c):
+    value = []
+    x1 = (-b+c)/(2*a)
+    value.append(x1)
+    x2 = (-b-c)/(2*a)
+    value.append(x2)
+    return value
+
+
+    
+print("Now doing quadratic \n  ")
+while True:
+    answer_a = input("exit to exit \n Give a number: ")
+    answer_b1 = input("exit to exit \n Give another number: ")
+    answer_c = input("exit to exit \n Give a negative number: ")
+    if answer_a.lower() == "exit":
+        break
+    else:
+        A = stringConverter(answer_a)
+    if answer_b1.lower() == "exit":
+        break
+    else:
+        B1 = stringConverter(answer_b1)
+    if answer_c.lower() == "exit":
+        break
+    else:
+        C = stringConverter(answer_c)
+    
+    val = quadratic(A, B1, square(A, B1, C))
+    print(f"The quadritc formula answer = {val}")
+    continue
